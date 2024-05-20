@@ -1,0 +1,7 @@
+package RecyclerViewHelpers
+
+class Adaptador {
+
+
+
+}
