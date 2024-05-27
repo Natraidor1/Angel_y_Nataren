@@ -42,7 +42,12 @@ class Adaptador(var Datos: List<DataClassMusica>): RecyclerView.Adapter<ViewHold
             deleteCancion.setString(1, nombreCancion)
             deleteCancion.executeUpdate()
 
+            val commit = objConexion.prepareStatement("commit")
+            commit.executeUpdate()
         }
+        Datos = listaDatos.toList()
+        notifyItemRemoved(position)
+        notifyDataSetChanged()
 
     }
 
