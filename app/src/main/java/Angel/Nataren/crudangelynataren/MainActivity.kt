@@ -58,6 +58,8 @@ class MainActivity : AppCompatActivity() {
             val cancion = DataClassMusica(nombre)
             canciones.add(cancion)
 
+
+
             }
 
             return canciones
@@ -94,6 +96,15 @@ class MainActivity : AppCompatActivity() {
                 addMusica.setInt( 2, txtDuracion.text.toString().toInt())
                 addMusica.setString(3, txtAutor.text.toString())
                 addMusica.executeUpdate()
+
+                val nuevasCanciones = mostrarDatos()
+                withContext(Dispatchers.Main){
+
+                //Actualiza el adapatador con los datos nuevos
+
+                (rcvMusica.adapter as? Adaptador)?.actualizarListado(nuevasCanciones)
+
+                }
             }
         }
     }
