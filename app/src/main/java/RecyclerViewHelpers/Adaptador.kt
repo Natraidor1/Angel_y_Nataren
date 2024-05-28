@@ -2,6 +2,8 @@ package RecyclerViewHelpers
 
 import Angel.Nataren.crudangelynataren.R
 import DataClassMusica
+import android.app.AlertDialog
+import android.net.Uri.Builder
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -65,10 +67,38 @@ class Adaptador(var Datos: List<DataClassMusica>): RecyclerView.Adapter<ViewHold
         val item = Datos[position]
         holder.txtNombre.text = item.nombreCancion
 
+        //TODO: click al icono de borrar
+        holder.imgBorrar.setOnClickListener{
 
-        
+        //Creo la alerta para confirmar la eliminacion
+        //-1 invoco el contexto
+            val context = holder.itemView.context
+
+        //-2 creo la alerta usando los 3 pasos
+            //TODO: titulo, mensaje, botones
+
+            val builder =AlertDialog.Builder(context)
+
+            builder.setTitle("Confirmacion")
+            builder.setMessage("¿Estas seguro?")
+
+            builder.setPositiveButton("Si"){ dialog, wich ->
+                eliminarDatos(item.nombreCancion, position)
+
+            }
+
+            builder.setNegativeButton("No"){ dialog, wich ->
+                dialog.dismiss()
+            }
+
+            val dialog = builder.create()
+            dialog.show()
+
+        }
 
     }
+
+
 
 
 }
